@@ -178,11 +178,7 @@ function! s:InputName()
 endfunction
 
 function! g:MarkdownPasteImage(relpath)
-        execute "normal! o![" . g:mdip_tmpname[0:0]
-        let ipos = getcurpos()
-        execute "normal! a" . g:mdip_tmpname[1:] . "](" . a:relpath . ")"
-        " call setpos('.', ipos)
-        " execute "normal! vt]\<C-g>"
+        execute "normal! o![](" . a:relpath . ")"
 endfunction
 
 function! g:LatexPasteImage(relpath)
