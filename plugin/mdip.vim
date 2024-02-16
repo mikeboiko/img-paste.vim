@@ -178,11 +178,11 @@ function! s:InputName()
 endfunction
 
 function! g:MarkdownPasteImage(relpath)
-        execute "normal! i![" . g:mdip_tmpname[0:0]
+        execute "normal! o![" . g:mdip_tmpname[0:0]
         let ipos = getcurpos()
         execute "normal! a" . g:mdip_tmpname[1:] . "](" . a:relpath . ")"
-        call setpos('.', ipos)
-        execute "normal! vt]\<C-g>"
+        " call setpos('.', ipos)
+        " execute "normal! vt]\<C-g>"
 endfunction
 
 function! g:LatexPasteImage(relpath)
@@ -194,7 +194,7 @@ function! g:LatexPasteImage(relpath)
 endfunction
 
 function! g:EmptyPasteImage(relpath)
-    execute "normal! i" . a:relpath 
+    execute "normal! i" . a:relpath
 endfunction
 
 let g:PasteImageFunction = 'g:MarkdownPasteImage'
@@ -210,10 +210,10 @@ function! mdip#MarkdownClipboardImage()
     while  1
         let workdir = s:SafeMakeDir()
         " change temp-file-name and image-name
-        let g:mdip_tmpname = s:InputName()
-        if empty(g:mdip_tmpname)
+        " let g:mdip_tmpname = s:InputName()
+        " if empty(g:mdip_tmpname)
           let g:mdip_tmpname = g:mdip_imgname . '_' . s:RandomName()
-        endif
+        " endif
         let testpath =  workdir . '/' . g:mdip_tmpname . '.png'
         if filereadable(testpath) == 0
             break
